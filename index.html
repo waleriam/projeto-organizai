@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>OrganizAI - Seu assistente financeiro</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/chart.js" rel="preload" as="script">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+
+<body>
+    <div class="app">
+        <header class="site-header" role="banner">
+            <div class="shell header-inner">
+                <button class="btn icon-btn" type="button" aria-label="Abrir menu">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+
+                <a class="brand" href="#" aria-label="OrganizAI — página inicial">
+                    <img src="./assets/images/logo _organizai_color.png" alt="OrganizAI" class="brand__logo" />
+                </a>
+
+                <div class="header-actions">
+                    <button class="btn icon-btn" type="button" aria-label="Ajuda">
+                        <i class="fa-regular fa-circle-question" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="page" id="main" role="main" aria-label="Painel principal">
+            <nav class="nav-pills shell" role="tablist" aria-label="Navegação principal">
+                <button class="pill" role="tab" aria-selected="true" data-panel="home">Home</button>
+                <button class="pill" role="tab" aria-selected="false" data-panel="despesas">Despesas</button>
+                <button class="pill" role="tab" aria-selected="false" data-panel="ganhos">Ganhos</button>
+                <button class="pill" role="tab" aria-selected="false" data-panel="investimentos">Investimentos</button>
+                <button class="pill" role="tab" aria-selected="false" data-panel="assistant">Seu Assistente</button>
+            </nav>
+
+            <section class="stats shell" aria-label="Estatísticas financeiras">
+                <article class="stat">
+                    <h3 class="stat__title">Despesas</h3>
+                    <p class="stat__value">R$ 1.500,00</p>
+                    <p class="stat__meta">Você gastou +R$ 500,00 esse mês</p>
+                </article>
+
+                <article class="stat">
+                    <h3 class="stat__title">Ganhos</h3>
+                    <p class="stat__value">R$ 3.550,00</p>
+                    <p class="stat__meta">Você recebeu +R$ 50,00 esse mês</p>
+                </article>
+
+                <article class="stat">
+                    <h3 class="stat__title">Investimentos</h3>
+                    <p class="stat__value">R$ 10.353,00</p>
+                    <p class="stat__meta">-8% investidos nesse mês</p>
+                </article>
+            </section>
+
+            <section class="chart shell" aria-label="Movimentação">
+                <h2 class="section-title">Movimentação</h2>
+                <div class="chart-card" role="img" aria-label="Gráfico de movimentação financeira de 07/10 a 13/10">
+                    <canvas id="movChart" class="chart-canvas" aria-hidden="false"></canvas>
+                </div>
+            </section>
+
+            <section class="assistant shell" aria-label="Seu assistente">
+                <h2 class="section-title">Seu Assistente</h2>
+                <div class="assistant__list">
+                    <article class="assistant__item card">
+                        <div class="assistant__avatar" aria-hidden="true">
+                            <i class="fa-regular fa-face-smile"></i>
+                        </div>
+                        <div class="assistant__content">
+                            <button class="btn primary-cta" type="button">Organize seu dinheiro aqui!</button>
+                            <p class="assistant__text">Informe suas despesas, ganhos e investimentos. Tudo em um só
+                                lugar!</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer" role="contentinfo" aria-label="Navegação inferior">
+            <div class="footer-inner shell">
+                <nav class="footer-nav" role="navigation" aria-label="Atalhos principais">
+                    <button class="tab-btn" aria-label="Home"><i class="fa-solid fa-house"
+                            aria-hidden="true"></i></button>
+                    <button class="tab-btn" aria-label="Ganhos"><i class="fa-solid fa-hand-holding-dollar"
+                            aria-hidden="true"></i></button>
+                    <button class="tab-btn" aria-label="Despesas"><i class="fa-regular fa-credit-card"
+                            aria-hidden="true"></i></button>
+                    <button class="tab-btn" aria-label="Investimentos"><i class="fa-solid fa-piggy-bank"
+                            aria-hidden="true"></i></button>
+                    <button class="tab-btn" aria-label="Assistente"><i class="fa-regular fa-face-smile"
+                            aria-hidden="true"></i></button>
+                </nav>
+                <p class="copyright">® Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        (function () {
+            const ctx = document.getElementById('movChart');
+            const chartConfig = {
+                type: 'line',
+                data: {
+                    labels: ['07/10', '08/10', '09/10', '10/10', '11/10', '12/10', '13/10'],
+                    datasets: [
+                        {
+                            label: 'Ganhos',
+                            data: [5000, 5200, 5100, 5500, 5800, 5500, 5500],
+                            borderWidth: 2,
+                            tension: 0.3,
+                            borderColor: '#3b2c72',
+                            backgroundColor: 'rgba(59,44,114,0.06)',
+                            pointRadius: 3,
+                            pointHoverRadius: 5
+                        },
+                        {
+                            label: 'Despesas',
+                            data: [3500, 3200, 4500, 3300, 3600, 3800, 4200],
+                            borderWidth: 2,
+                            tension: 0.3,
+                            borderColor: '#e04b4b',
+                            backgroundColor: 'rgba(224,75,75,0.06)',
+                            pointRadius: 3,
+                            pointHoverRadius: 5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: (value) => 'R$ ' + Number(value).toLocaleString('pt-BR')
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: true, position: 'top' }
+                    }
+                }
+            };
+
+            new Chart(ctx, chartConfig);
+        })();
+    </script>
+</body>
+
+</html>
